@@ -6,6 +6,7 @@ import {
   Put,
   Param,
   Delete,
+  HttpCode,
 } from '@nestjs/common';
 import { ExpenseService } from './expense.service';
 import { CreateExpenseDto } from './dto/create-expense.dto';
@@ -35,6 +36,7 @@ export class ExpenseController {
     return this.expenseService.update(+id, updateExpenseDto);
   }
 
+  @HttpCode(204)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.expenseService.remove(+id);
