@@ -1,5 +1,5 @@
 export class Expense {
-  id?: number;
+  id: number;
   id_user: number;
   description: string;
   value: number;
