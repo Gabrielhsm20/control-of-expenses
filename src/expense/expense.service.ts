@@ -1,4 +1,4 @@
-import { Inject, Injectable, NotFoundException, Scope } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { MailService } from '../mail/mail.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateExpenseDto } from './dto/create-expense.dto';
@@ -6,12 +6,12 @@ import { UpdateExpenseDto } from './dto/update-expense.dto';
 import { REQUEST } from '@nestjs/core';
 import { Request } from 'express';
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class ExpenseService {
   constructor(
-    @Inject(REQUEST) private request: Request,
     private readonly prisma: PrismaService,
-    private readonly mailService: MailService,
+    @Inject(REQUEST) private request?: Request,
+    private readonly mailService?: MailService,
   ) {}
 
   async create(createExpenseDto: CreateExpenseDto) {
@@ -28,9 +28,9 @@ export class ExpenseService {
     });
 
     this.mailService.sendMail({
-      to: result.user.email,
+      to: result?.user?.email,
       subject: 'Registered expense',
-      text: `Hey ${result.user.name}, a new expense was registered.`,
+      text: `Hey ${result?.user?.name}, a new expense was registered.`,
     });
 
     delete result.user;
@@ -66,6 +66,6 @@ export class ExpenseService {
   async remove(id: number) {
     await this.findOne(id);
 
-    return this.prisma.expenses.delete({ where: { id } });
+    return await this.prisma.expenses.delete({ where: { id } });
   }
 }
