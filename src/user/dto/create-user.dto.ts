@@ -4,13 +4,16 @@ import {
   Matches,
   MaxLength,
   MinLength,
+  Validate,
 } from 'class-validator';
+import { UserNotExistsValidator } from '../decorators/user-not-exists-validator.decorator';
 
 export class CreateUserDto {
   @IsString()
   name: string;
 
   @IsEmail()
+  @Validate(UserNotExistsValidator)
   email: string;
 
   @IsString()
