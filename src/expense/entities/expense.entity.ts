@@ -1,4 +1,4 @@
-export class Expense {
+export class ExpenseEntity {
   id: number;
   id_user: number;
   description: string;
