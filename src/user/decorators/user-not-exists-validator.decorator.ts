@@ -10,7 +10,7 @@ import { UserService } from '../user.service';
 export class UserNotExistsValidator implements ValidatorConstraintInterface {
   constructor(private readonly userService: UserService) {}
 
-  async validate(value: number | string, args: any) {
+  async validate(value: number | string) {
     try {
       const result =
         typeof value === 'number'
