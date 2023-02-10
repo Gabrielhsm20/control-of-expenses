@@ -5,9 +5,9 @@ import {
 } from 'class-validator';
 import { UserService } from 'src/user/user.service';
 
-@ValidatorConstraint({ name: 'UserExists', async: true })
+@ValidatorConstraint({ name: 'UserNotExists', async: true })
 @Injectable()
-export class UserExistsValidator implements ValidatorConstraintInterface {
+export class UserNotExistsValidator implements ValidatorConstraintInterface {
   constructor(private readonly userService: UserService) {}
 
   async validate(value: number | string, args: any) {
@@ -17,15 +17,15 @@ export class UserExistsValidator implements ValidatorConstraintInterface {
         typeof value === 'number'
           ? await this.userService.findOne(value)
           : await this.userService.findByEmail(value);
-      if (!result) return false;
+      if (!result) return true;
     } catch (e) {
-      return false;
+      return true;
     }
 
-    return true;
+    return false;
   }
 
   defaultMessage() {
-    return `user not exist`;
+    return `user already exist`;
   }
 }
