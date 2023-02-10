@@ -26,6 +26,6 @@ export class UserNotExistsValidator implements ValidatorConstraintInterface {
   }
 
   defaultMessage() {
-    return `user already exist`;
+    return `User already exist`;
   }
 }
