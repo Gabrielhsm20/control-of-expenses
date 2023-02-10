@@ -5,9 +5,10 @@ import { ExpenseModule } from './expense/expense.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { MailModule } from './mail/mail.module';
 
 @Module({
-  imports: [PrismaModule, UserModule, ExpenseModule, AuthModule],
+  imports: [PrismaModule, UserModule, ExpenseModule, AuthModule, MailModule],
   controllers: [],
   providers: [
     {
