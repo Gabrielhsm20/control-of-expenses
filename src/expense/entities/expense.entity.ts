@@ -6,4 +6,8 @@ export class ExpenseEntity {
   date: Date;
   createdAt: Date;
   updatedAt: Date;
+
+  constructor(partial: Partial<ExpenseEntity>) {
+    Object.assign(this, partial);
+  }
 }
