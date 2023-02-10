@@ -5,6 +5,7 @@ import {
   IsPositive,
   IsString,
   MaxDate,
+  MaxLength,
 } from 'class-validator';
 
 export class CreateExpenseDto {
@@ -12,6 +13,7 @@ export class CreateExpenseDto {
   id_user: number;
 
   @IsString()
+  @MaxLength(191)
   description: string;
 
   @IsNumber()
