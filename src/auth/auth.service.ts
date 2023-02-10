@@ -41,7 +41,7 @@ export class AuthService {
     }
 
     throw new UnauthorizedError(
-      'email address or password provided is incorrect.',
+      'Email address or password provided is incorrect.',
     );
   }
 }
