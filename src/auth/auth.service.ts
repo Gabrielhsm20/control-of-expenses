@@ -14,7 +14,7 @@ export class AuthService {
     private readonly userService: UserService,
   ) {}
 
-  async login(user: User): Promise<UserToken> {
+  async login(user: UserEntity): Promise<UserToken> {
     const payload: UserPayload = {
       sub: user.id,
       email: user.email,
