@@ -47,21 +47,6 @@ describe('UserController', () => {
     expect(userService).toBeDefined();
   });
 
-  describe('findAll', () => {
-    it('should return the list of users', async () => {
-      const result = await userController.findAll();
-
-      expect(typeof result).toEqual('object');
-      expect(result).toEqual(userEntityList);
-      expect(userService.findAll).toHaveBeenCalledTimes(1);
-    });
-
-    it('should throw an exception', () => {
-      jest.spyOn(userService, 'findAll').mockRejectedValueOnce(new Error());
-      expect(userController.findAll()).rejects.toThrowError();
-    });
-  });
-
   describe('create', () => {
     const body: CreateUserDto = {
       name: 'Emanuelle',
@@ -80,6 +65,21 @@ describe('UserController', () => {
     it('should throw an exception', () => {
       jest.spyOn(userService, 'create').mockRejectedValueOnce(new Error());
       expect(userController.create(body)).rejects.toThrowError();
+    });
+  });
+
+  describe('findAll', () => {
+    it('should return the list of users', async () => {
+      const result = await userController.findAll();
+
+      expect(typeof result).toEqual('object');
+      expect(result).toEqual(userEntityList);
+      expect(userService.findAll).toHaveBeenCalledTimes(1);
+    });
+
+    it('should throw an exception', () => {
+      jest.spyOn(userService, 'findAll').mockRejectedValueOnce(new Error());
+      expect(userController.findAll()).rejects.toThrowError();
     });
   });
 

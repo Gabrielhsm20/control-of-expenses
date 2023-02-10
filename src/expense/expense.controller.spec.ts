@@ -60,21 +60,6 @@ describe('ExpenseController', () => {
     expect(expenseService).toBeDefined();
   });
 
-  describe('findAll', () => {
-    it('should return the list of expenses', async () => {
-      const result = await expenseController.findAll();
-
-      expect(typeof result).toEqual('object');
-      expect(result).toEqual(expenseEntityList);
-      expect(expenseService.findAll).toHaveBeenCalledTimes(1);
-    });
-
-    it('should throw an exception', () => {
-      jest.spyOn(expenseService, 'findAll').mockRejectedValueOnce(new Error());
-      expect(expenseController.findAll()).rejects.toThrowError();
-    });
-  });
-
   describe('create', () => {
     const body: CreateExpenseDto = {
       id_user: 1,
@@ -94,6 +79,21 @@ describe('ExpenseController', () => {
     it('should throw an exception', () => {
       jest.spyOn(expenseService, 'create').mockRejectedValueOnce(new Error());
       expect(expenseController.create(body)).rejects.toThrowError();
+    });
+  });
+
+  describe('findAll', () => {
+    it('should return the list of expenses', async () => {
+      const result = await expenseController.findAll();
+
+      expect(typeof result).toEqual('object');
+      expect(result).toEqual(expenseEntityList);
+      expect(expenseService.findAll).toHaveBeenCalledTimes(1);
+    });
+
+    it('should throw an exception', () => {
+      jest.spyOn(expenseService, 'findAll').mockRejectedValueOnce(new Error());
+      expect(expenseController.findAll()).rejects.toThrowError();
     });
   });
 
