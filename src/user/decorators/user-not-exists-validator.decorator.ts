@@ -11,7 +11,6 @@ export class UserNotExistsValidator implements ValidatorConstraintInterface {
   constructor(private readonly userService: UserService) {}
 
   async validate(value: number | string, args: any) {
-    console.log(args);
     try {
       const result =
         typeof value === 'number'
