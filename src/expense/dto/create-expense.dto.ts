@@ -8,7 +8,7 @@ import {
   MaxLength,
   Validate,
 } from 'class-validator';
-import { UserExistsValidator } from 'src/user/decorators/user-exists-validator.decorator';
+import { UserExistsValidator } from '../../user/decorators/user-exists-validator.decorator';
 
 export class CreateExpenseDto {
   @IsNumber()

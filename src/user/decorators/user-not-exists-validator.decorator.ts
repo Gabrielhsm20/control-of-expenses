@@ -3,7 +3,7 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator';
-import { UserService } from 'src/user/user.service';
+import { UserService } from '../user.service';
 
 @ValidatorConstraint({ name: 'UserNotExists', async: true })
 @Injectable()
