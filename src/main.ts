@@ -8,7 +8,6 @@ async function bootstrap() {
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
-  // Pipes
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
